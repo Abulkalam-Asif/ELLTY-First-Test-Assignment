@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="card-header">
+          <label class="item-container" for="all-pages">
+            <span> All pages </span>
+            <input type="checkbox" id="all-pages" />
+          </label>
+        </div>
+        <hr />
+        <div class="card-body">
+          <label class="item-container" for="page1">
+            <span>Page 1</span>
+            <input type="checkbox" id="page1" />
+          </label>
+          <label class="item-container" for="page2">
+            <span>Page 2</span>
+            <input type="checkbox" id="page2" />
+          </label>
+          <label class="item-container" for="page3">
+            <span>Page 3</span>
+            <input type="checkbox" id="page3" />
+          </label>
+          <label class="item-container" for="page4">
+            <span>Page 4</span>
+            <input type="checkbox" id="page4" />
+          </label>
+        </div>
+        <hr />
+        <div class="card-footer">
+          <button class="done-button">Done</button>
+        </div>
+      </div>
+    </main>
+    <script>
+      const headerCheckbox = document.querySelector(
+        ".card-header input[type='checkbox']"
+      );
+      const itemCheckboxes = document.querySelectorAll(
+        ".item-container input[type='checkbox']"
+      );
+
+      headerCheckbox.addEventListener("change", () => {
+        itemCheckboxes.forEach((checkbox) => {
+          checkbox.checked = headerCheckbox.checked;
+        });
+      });
+
+      itemCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          const allChecked = Array.from(itemCheckboxes).every(
+            (cb) => cb.checked
+          );
+          headerCheckbox.checked = allChecked;
+        });
+      });
+    </script>
+  </body>
+</html>
